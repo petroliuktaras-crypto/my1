@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#f7f8fc"/>
+  <text x="50" y="60" font-size="40" fill="#384054" font-family="Arial" font-weight="700">Варіант 2: Sidebar + контент</text>
+  <text x="50" y="100" font-size="24" fill="#76829b" font-family="Arial">Ліве меню, праворуч сітка відео</text>
+
+  <rect x="40" y="130" width="300" height="730" rx="22" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <circle cx="190" cy="260" r="90" fill="#e6ebff" stroke="#627eea" stroke-width="3"/>
+  <text x="110" y="390" font-size="30" fill="#384054" font-family="Arial">@username</text>
+  <text x="100" y="430" font-size="22" fill="#76829b" font-family="Arial">Рівень: Creator</text>
+
+  <rect x="80" y="480" width="220" height="48" rx="12" fill="#ecf2ff" stroke="#627eea" stroke-width="2"/>
+  <rect x="80" y="540" width="220" height="48" rx="12" fill="#fff" stroke="#d2daec" stroke-width="2"/>
+  <rect x="80" y="600" width="220" height="48" rx="12" fill="#fff" stroke="#d2daec" stroke-width="2"/>
+  <rect x="80" y="660" width="220" height="48" rx="12" fill="#fff" stroke="#d2daec" stroke-width="2"/>
+  <text x="110" y="512" font-size="22" fill="#384054" font-family="Arial">Профіль</text>
+  <text x="110" y="572" font-size="22" fill="#384054" font-family="Arial">Мої відео</text>
+  <text x="110" y="632" font-size="22" fill="#384054" font-family="Arial">Улюблене</text>
+  <text x="110" y="692" font-size="22" fill="#384054" font-family="Arial">Коментарі</text>
+
+  <rect x="370" y="130" width="990" height="140" rx="22" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <text x="410" y="190" font-size="34" fill="#384054" font-family="Arial">Профіль користувача</text>
+  <text x="410" y="235" font-size="22" fill="#76829b" font-family="Arial">Опис, посилання, статистика</text>
+
+  <rect x="370" y="300" width="300" height="250" rx="18" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <rect x="700" y="300" width="300" height="250" rx="18" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <rect x="1030" y="300" width="300" height="250" rx="18" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <rect x="370" y="580" width="300" height="250" rx="18" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <rect x="700" y="580" width="300" height="250" rx="18" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <rect x="1030" y="580" width="300" height="250" rx="18" fill="#fff" stroke="#384054" stroke-width="3"/>
+
+  <text x="395" y="520" font-size="20" fill="#76829b" font-family="Arial">Відео 1 • 12K</text>
+  <text x="725" y="520" font-size="20" fill="#76829b" font-family="Arial">Відео 2 • 7K</text>
+  <text x="1055" y="520" font-size="20" fill="#76829b" font-family="Arial">Відео 3 • 3K</text>
+</svg>
