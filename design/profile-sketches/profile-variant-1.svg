@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#f7f8fc"/>
+  <text x="50" y="60" font-size="40" fill="#384054" font-family="Arial" font-weight="700">Варіант 1: Dashboard профілю</text>
+  <text x="50" y="100" font-size="24" fill="#76829b" font-family="Arial">Великий хедер + статистика + активність</text>
+
+  <rect x="40" y="130" width="1320" height="110" rx="24" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <circle cx="110" cy="185" r="45" fill="#e6ebff" stroke="#627eea" stroke-width="3"/>
+  <text x="180" y="180" font-size="30" fill="#384054" font-family="Arial">Ім'я користувача</text>
+  <text x="180" y="215" font-size="22" fill="#76829b" font-family="Arial">@username • Київ</text>
+
+  <rect x="40" y="270" width="310" height="110" rx="20" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <rect x="370" y="270" width="310" height="110" rx="20" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <rect x="700" y="270" width="310" height="110" rx="20" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <rect x="1030" y="270" width="310" height="110" rx="20" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <text x="65" y="315" font-size="24" fill="#76829b" font-family="Arial">Відео: 32</text>
+  <text x="395" y="315" font-size="24" fill="#76829b" font-family="Arial">Лайки: 8.4K</text>
+  <text x="725" y="315" font-size="24" fill="#76829b" font-family="Arial">Коментарі: 1.1K</text>
+  <text x="1055" y="315" font-size="24" fill="#76829b" font-family="Arial">Улюблене: 57</text>
+
+  <rect x="40" y="410" width="820" height="450" rx="20" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <text x="70" y="455" font-size="30" fill="#384054" font-family="Arial">Остання активність</text>
+  <line x1="70" y1="500" x2="830" y2="500" stroke="#dce1f0" stroke-width="2"/>
+  <line x1="70" y1="570" x2="830" y2="570" stroke="#dce1f0" stroke-width="2"/>
+  <line x1="70" y1="640" x2="830" y2="640" stroke="#dce1f0" stroke-width="2"/>
+  <line x1="70" y1="710" x2="830" y2="710" stroke="#dce1f0" stroke-width="2"/>
+  <text x="90" y="545" font-size="22" fill="#384054" font-family="Arial">Коментар до відео #1</text>
+  <text x="90" y="615" font-size="22" fill="#384054" font-family="Arial">Лайк під відео #2</text>
+  <text x="90" y="685" font-size="22" fill="#384054" font-family="Arial">Додав у улюблене відео #3</text>
+  <text x="90" y="755" font-size="22" fill="#384054" font-family="Arial">Відповідь у треді #4</text>
+
+  <rect x="890" y="410" width="470" height="450" rx="20" fill="#fff" stroke="#384054" stroke-width="3"/>
+  <text x="920" y="455" font-size="30" fill="#384054" font-family="Arial">Швидкі дії</text>
+  <rect x="920" y="500" width="410" height="70" rx="14" fill="#f2f5ff" stroke="#627eea" stroke-width="2"/>
+  <rect x="920" y="590" width="410" height="70" rx="14" fill="#f2f5ff" stroke="#627eea" stroke-width="2"/>
+  <rect x="920" y="680" width="410" height="70" rx="14" fill="#f2f5ff" stroke="#627eea" stroke-width="2"/>
+  <text x="950" y="545" font-size="22" fill="#384054" font-family="Arial">Завантажити відео</text>
+  <text x="950" y="635" font-size="22" fill="#384054" font-family="Arial">Мої плейлисти</text>
+  <text x="950" y="725" font-size="22" fill="#384054" font-family="Arial">Налаштування</text>
+</svg>
