@@ -3017,3 +3017,15 @@ background: #f3f3f3;
     color: #7f89aa;
     font-size: 13px;
 }
+
+.profile-v2-menu .profile-v2-logout {
+    margin-top: 6px;
+    background: #fff1f3;
+    border-color: #f1b8c2;
+    color: #a62a45;
+}
+
+.profile-v2-menu .profile-v2-logout:hover {
+    background: #ffe4e9;
+    border-color: #e8a3b0;
+}

@@ -12,6 +12,7 @@
                 <a href="/favorites">Моє улюблене</a>
                 <a href="/comments">Коментарі</a>
                 <a href="/settings">Налаштування</a>
+                <a href="/logout" class="profile-v2-logout">Вихід</a>
             </nav>
 
             <div class="profile-v2-mini-stats">
