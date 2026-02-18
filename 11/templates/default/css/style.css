@@ -2977,3 +2977,43 @@ background: #f3f3f3;
         grid-template-columns: 1fr;
     }
 }
+
+.profile-v2-comments-list {
+    margin-top: 14px;
+    display: grid;
+    gap: 10px;
+}
+
+.profile-v2-comment-item {
+    background: #fff;
+    border: 1px solid #d8ddee;
+    border-radius: 16px;
+    box-shadow: 0 10px 26px rgba(34, 40, 70, 0.05);
+    padding: 12px 14px;
+}
+
+.profile-v2-comment-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    color: #2b345c;
+    font-size: 14px;
+}
+
+.profile-v2-comment-head a {
+    color: #314591;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.profile-v2-comment-text {
+    margin: 10px 0 8px;
+    color: #2a3050;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.profile-v2-comment-time {
+    color: #7f89aa;
+    font-size: 13px;
+}

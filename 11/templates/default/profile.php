@@ -24,7 +24,7 @@
         <section class="profile-v2-main">
             <header class="profile-v2-header">
                 <h2>Профіль користувача</h2>
-                <p>Керування контентом, активністю та улюбленими відео.</p>
+                <p>Останні коментарі користувача.</p>
             </header>
 
             <div class="profile-v2-stats-row">
@@ -33,22 +33,26 @@
                 <article><span>Реакції</span><strong><?= (int)$profileOverview['reactions_count'] ?></strong></article>
             </div>
 
-            <div class="profile-v2-cards-grid">
-                <?php if (!empty($profileVideos)): ?>
-                    <?php foreach ($profileVideos as $item): ?>
-                        <article class="profile-v2-card">
-                            <a href="/video/<?= htmlspecialchars((string)$item['slug']) ?>" class="profile-v2-thumb">
-                                <img src="/uploads/posters/<?= htmlspecialchars((string)$item['poster']) ?>" alt="<?= htmlspecialchars((string)$item['title']) ?>">
-                            </a>
-                            <h3>
-                                <a href="/video/<?= htmlspecialchars((string)$item['slug']) ?>">
-                                    <?= htmlspecialchars((string)$item['title']) ?>
-                                </a>
-                            </h3>
+            <div class="profile-v2-comments-list">
+                <?php if (!empty($recentComments)): ?>
+                    <?php foreach ($recentComments as $comment): ?>
+                        <article class="profile-v2-comment-item">
+                            <div class="profile-v2-comment-head">
+                                <strong>Коментар до відео:</strong>
+                                <?php if (!empty($comment['video_slug'])): ?>
+                                    <a href="/video/<?= htmlspecialchars((string)$comment['video_slug']) ?>">
+                                        <?= htmlspecialchars((string)($comment['video_title'] ?? ('Відео #' . (int)$comment['video_id']))) ?>
+                                    </a>
+                                <?php else: ?>
+                                    <span><?= htmlspecialchars((string)($comment['video_title'] ?? ('Відео #' . (int)$comment['video_id']))) ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <p class="profile-v2-comment-text"><?= renderCommentMessage((string)$comment['message']) ?></p>
+                            <div class="profile-v2-comment-time"><?= htmlspecialchars((string)$comment['created_at']) ?></div>
                         </article>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p class="profile-v2-empty">Контент поки відсутній.</p>
+                    <p class="profile-v2-empty">У вас ще немає коментарів.</p>
                 <?php endif; ?>
             </div>
         </section>

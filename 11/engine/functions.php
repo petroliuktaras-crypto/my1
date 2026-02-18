@@ -1493,3 +1493,47 @@ function getUserProfileOverview(int $userId): array {
         ],
     ];
 }
+
+function getUserRecentComments(int $userId, int $limit = 8): array {
+    if ($userId < 1) {
+        return [];
+    }
+
+    $schema = getCommentsSchema();
+    if (!$schema['hasUserId'] || $schema['messageColumn'] === '' || $schema['videoColumn'] === '') {
+        return [];
+    }
+
+    $limit = max(1, min(30, (int)$limit));
+
+    $messageExpr = "c.`{$schema['messageColumn']}`";
+    $createdAtExpr = $schema['hasCreatedAt'] ? 'c.created_at' : 'NOW()';
+
+    $where = ['c.user_id = ?'];
+    if ($schema['hasStatus']) {
+        $where[] = 'c.status = 1';
+    }
+
+    $sql = "
+        SELECT
+            c.id,
+            {$messageExpr} AS message,
+            {$createdAtExpr} AS created_at,
+            c.`{$schema['videoColumn']}` AS video_id,
+            v.title AS video_title,
+            v.slug AS video_slug
+        FROM comments c
+        LEFT JOIN videos v ON v.id = c.`{$schema['videoColumn']}`
+        WHERE " . implode(' AND ', $where) . "
+        ORDER BY " . ($schema['hasCreatedAt'] ? 'c.created_at' : 'c.id') . " DESC
+        LIMIT {$limit}
+    ";
+
+    try {
+        $st = db()->prepare($sql);
+        $st->execute([$userId]);
+        return $st->fetchAll(PDO::FETCH_ASSOC) ?: [];
+    } catch (Throwable $e) {
+        return [];
+    }
+}
