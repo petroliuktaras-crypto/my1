@@ -1387,3 +1387,109 @@ function addVideoView(int $videoId): void {
 
 
 
+
+function getUserProfileOverview(int $userId): array {
+    if ($userId < 1) {
+        return [
+            'videos_count' => 0,
+            'favorites_count' => 0,
+            'comments_count' => 0,
+            'reactions_count' => 0,
+            'recent_activity' => [],
+            'quick_actions' => [
+                ['title' => 'Завантажити відео', 'url' => '/upload'],
+                ['title' => 'Моє улюблене', 'url' => '/favorites'],
+                ['title' => 'Перейти до коментарів', 'url' => '/comments'],
+                ['title' => 'Налаштування профілю', 'url' => '/settings'],
+            ],
+        ];
+    }
+
+    $db = db();
+
+    $videosCount = 0;
+    if (tableHasColumn('videos', 'user_id')) {
+        try {
+            $st = $db->prepare('SELECT COUNT(*) FROM videos WHERE user_id = ?');
+            $st->execute([$userId]);
+            $videosCount = (int)$st->fetchColumn();
+        } catch (Throwable $e) {
+            $videosCount = 0;
+        }
+    }
+
+    $favoritesCount = 0;
+    try {
+        $st = $db->prepare('SELECT COUNT(*) FROM video_favorites WHERE user_id = ?');
+        $st->execute([$userId]);
+        $favoritesCount = (int)$st->fetchColumn();
+    } catch (Throwable $e) {
+        $favoritesCount = 0;
+    }
+
+    $commentsCount = 0;
+    try {
+        if (tableHasColumn('comments', 'user_id')) {
+            $st = $db->prepare('SELECT COUNT(*) FROM comments WHERE user_id = ?');
+            $st->execute([$userId]);
+            $commentsCount = (int)$st->fetchColumn();
+        }
+    } catch (Throwable $e) {
+        $commentsCount = 0;
+    }
+
+    $reactionsCount = 0;
+    try {
+        $st = $db->prepare('SELECT COUNT(*) FROM video_likes WHERE user_id = ?');
+        $st->execute([$userId]);
+        $reactionsCount = (int)$st->fetchColumn();
+    } catch (Throwable $e) {
+        $reactionsCount = 0;
+    }
+
+    $activity = [];
+
+    if (tableHasColumn('comments', 'user_id') && tableHasColumn('comments', 'video_id') && tableHasColumn('comments', 'message')) {
+        try {
+            $st = $db->prepare("\n                SELECT c.id, c.video_id, c.message, c.created_at, v.slug, v.title\n                FROM comments c\n                LEFT JOIN videos v ON v.id = c.video_id\n                WHERE c.user_id = ?\n                ORDER BY c.id DESC\n                LIMIT 5\n            ");
+            $st->execute([$userId]);
+            foreach ($st->fetchAll(PDO::FETCH_ASSOC) as $row) {
+                $activity[] = [
+                    'type' => 'comment',
+                    'title' => 'Коментар: ' . mb_strimwidth(trim((string)$row['message']), 0, 70, '...'),
+                    'meta' => !empty($row['title']) ? 'До відео: ' . $row['title'] : 'До відео #' . (int)$row['video_id'],
+                    'url' => !empty($row['slug']) ? '/video/' . $row['slug'] : '#',
+                ];
+            }
+        } catch (Throwable $e) {
+        }
+    }
+
+    try {
+        $st = $db->prepare("\n            SELECT vf.video_id, v.slug, v.title\n            FROM video_favorites vf\n            LEFT JOIN videos v ON v.id = vf.video_id\n            WHERE vf.user_id = ?\n            ORDER BY vf.video_id DESC\n            LIMIT 3\n        ");
+        $st->execute([$userId]);
+        foreach ($st->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $activity[] = [
+                'type' => 'favorite',
+                'title' => 'Додано в улюблене',
+                'meta' => !empty($row['title']) ? $row['title'] : 'Відео #' . (int)$row['video_id'],
+                'url' => !empty($row['slug']) ? '/video/' . $row['slug'] : '/favorites',
+            ];
+        }
+    } catch (Throwable $e) {
+    }
+
+    return [
+        'videos_count' => $videosCount,
+        'favorites_count' => $favoritesCount,
+        'comments_count' => $commentsCount,
+        'reactions_count' => $reactionsCount,
+        'recent_activity' => array_slice($activity, 0, 6),
+        'quick_actions' => [
+            ['title' => 'Завантажити відео', 'url' => '/upload'],
+            ['title' => 'Моє улюблене', 'url' => '/favorites'],
+            ['title' => 'Коментарі', 'url' => '/comments'],
+            ['title' => 'Налаштування профілю', 'url' => '/settings'],
+        ],
+    ];
+}
