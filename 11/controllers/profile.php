@@ -11,8 +11,14 @@ $email = trim((string)($_SESSION['email'] ?? ''));
 
 $profile = getUserProfileOverview($userId);
 
+$profileVideos = getUserFavoriteVideos($userId, 6, 0);
+if (empty($profileVideos)) {
+    $profileVideos = getLatestVideos(6);
+}
+
 render('profile', [
     'profileLogin' => $login,
     'profileEmail' => $email,
     'profileOverview' => $profile,
+    'profileVideos' => $profileVideos,
 ]);

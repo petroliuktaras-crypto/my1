@@ -1,60 +1,56 @@
-<div class="container profile-v1-page">
-    <section class="profile-v1-header-card">
-        <div class="profile-v1-avatar"><?= strtoupper(mb_substr($profileLogin, 0, 1)) ?></div>
-        <div class="profile-v1-user-meta">
-            <h1><?= htmlspecialchars($profileLogin) ?></h1>
-            <p><?= htmlspecialchars($profileEmail !== '' ? $profileEmail : '@user') ?></p>
-        </div>
-    </section>
+<div class="container profile-v2-page">
+    <div class="profile-v2-layout">
+        <aside class="profile-v2-sidebar">
+            <div class="profile-v2-avatar-wrap">
+                <div class="profile-v2-avatar"><?= strtoupper(mb_substr($profileLogin, 0, 1)) ?></div>
+                <h1><?= htmlspecialchars($profileLogin) ?></h1>
+                <p><?= htmlspecialchars($profileEmail !== '' ? $profileEmail : '@user') ?></p>
+            </div>
 
-    <section class="profile-v1-stats-grid">
-        <article class="profile-v1-stat">
-            <span class="profile-v1-stat-label">Відео</span>
-            <strong><?= (int)$profileOverview['videos_count'] ?></strong>
-        </article>
-        <article class="profile-v1-stat">
-            <span class="profile-v1-stat-label">Лайки / реакції</span>
-            <strong><?= (int)$profileOverview['reactions_count'] ?></strong>
-        </article>
-        <article class="profile-v1-stat">
-            <span class="profile-v1-stat-label">Коментарі</span>
-            <strong><?= (int)$profileOverview['comments_count'] ?></strong>
-        </article>
-        <article class="profile-v1-stat">
-            <span class="profile-v1-stat-label">Улюблене</span>
-            <strong><?= (int)$profileOverview['favorites_count'] ?></strong>
-        </article>
-    </section>
+            <nav class="profile-v2-menu">
+                <a href="/profile" class="active">Профіль</a>
+                <a href="/favorites">Моє улюблене</a>
+                <a href="/comments">Коментарі</a>
+                <a href="/settings">Налаштування</a>
+            </nav>
 
-    <section class="profile-v1-content-grid">
-        <div class="profile-v1-activity-card">
-            <h2>Остання активність</h2>
-            <?php if (!empty($profileOverview['recent_activity'])): ?>
-                <ul class="profile-v1-activity-list">
-                    <?php foreach ($profileOverview['recent_activity'] as $item): ?>
-                        <li>
-                            <div class="profile-v1-dot" aria-hidden="true"></div>
-                            <div>
-                                <a href="<?= htmlspecialchars($item['url']) ?>"><?= htmlspecialchars($item['title']) ?></a>
-                                <p><?= htmlspecialchars($item['meta']) ?></p>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php else: ?>
-                <p class="profile-v1-empty">Поки що немає активності.</p>
-            <?php endif; ?>
-        </div>
-
-        <aside class="profile-v1-actions-card">
-            <h2>Швидкі дії</h2>
-            <div class="profile-v1-actions-list">
-                <?php foreach ($profileOverview['quick_actions'] as $action): ?>
-                    <a href="<?= htmlspecialchars($action['url']) ?>" class="profile-v1-action-btn">
-                        <?= htmlspecialchars($action['title']) ?>
-                    </a>
-                <?php endforeach; ?>
+            <div class="profile-v2-mini-stats">
+                <div><span>Відео</span><strong><?= (int)$profileOverview['videos_count'] ?></strong></div>
+                <div><span>Коментарі</span><strong><?= (int)$profileOverview['comments_count'] ?></strong></div>
+                <div><span>Лайки</span><strong><?= (int)$profileOverview['reactions_count'] ?></strong></div>
             </div>
         </aside>
-    </section>
+
+        <section class="profile-v2-main">
+            <header class="profile-v2-header">
+                <h2>Профіль користувача</h2>
+                <p>Керування контентом, активністю та улюбленими відео.</p>
+            </header>
+
+            <div class="profile-v2-stats-row">
+                <article><span>Улюблене</span><strong><?= (int)$profileOverview['favorites_count'] ?></strong></article>
+                <article><span>Коментарі</span><strong><?= (int)$profileOverview['comments_count'] ?></strong></article>
+                <article><span>Реакції</span><strong><?= (int)$profileOverview['reactions_count'] ?></strong></article>
+            </div>
+
+            <div class="profile-v2-cards-grid">
+                <?php if (!empty($profileVideos)): ?>
+                    <?php foreach ($profileVideos as $item): ?>
+                        <article class="profile-v2-card">
+                            <a href="/video/<?= htmlspecialchars((string)$item['slug']) ?>" class="profile-v2-thumb">
+                                <img src="/uploads/posters/<?= htmlspecialchars((string)$item['poster']) ?>" alt="<?= htmlspecialchars((string)$item['title']) ?>">
+                            </a>
+                            <h3>
+                                <a href="/video/<?= htmlspecialchars((string)$item['slug']) ?>">
+                                    <?= htmlspecialchars((string)$item['title']) ?>
+                                </a>
+                            </h3>
+                        </article>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="profile-v2-empty">Контент поки відсутній.</p>
+                <?php endif; ?>
+            </div>
+        </section>
+    </div>
 </div>
